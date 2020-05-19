@@ -11,7 +11,6 @@ X,y=load_breast_cancer(return_X_y=True)
 X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.2,random_state=40,stratify=y)
 
 #step3:Training
-#clf=LGBMClassifier(class_weight='balanced',boosting='rf',bagging_freq=1,random_state=40,bagging_fraction=0.3)
 param_grid={
             'class_weight':['balanced'],
             'boosting':['rf'],
