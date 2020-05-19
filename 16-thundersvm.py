@@ -1,8 +1,9 @@
+import numpy as np
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVC
+from thundersvm import SVC
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
 
@@ -17,7 +18,9 @@ pca=PCA()
 standardScaler=StandardScaler()
 
 #step4:training
-clf=SVC(class_weight='balanced',random_state=40)
+class_weight_vec=len(y_train)/(2*np.bincount(y_train))
+class_weight_dict={0:class_weight_vec[0],1:class_weight_vec[1]}
+clf=SVC(class_weight=class_weight_dict,random_state=40)
 pipe=Pipeline(steps=[('pca',pca),('standardScaler',standardScaler),('clf',clf)])
 param_grid=[
     {'pca__n_components':[x for x in [24,25,26,27,28,29,30]],'clf__kernel':['linear'],'clf__C':[0.01,0.03,0.1,0.3,1]},
