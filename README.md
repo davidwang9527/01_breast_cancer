@@ -1,1 +1,1 @@
-scikit-learn,lightgbm for breast_cancer.
+scikit-learn,lightgbm,thundersvm for breast_cancer.
