@@ -20,7 +20,7 @@ standardScaler=StandardScaler()
 clf=SVC(class_weight='balanced',random_state=40)
 pipe=Pipeline(steps=[('pca',pca),('standardScaler',standardScaler),('clf',clf)])
 param_grid=[
-    {'pca__n_components':[x for x in [24,25,26,27,28,29,30]],'clf__kernel':['linear'],'clf__C':[0.01,0.03,0.1,0.3,1]},
+    {'pca__n_components':[x for x in [24,25,26,27,28,29,30]],'clf__kernel':['linear'],'clf__C':[0.003,0.01,0.03,0.1,0.3,1]},
     {'pca__n_components':[x for x in [24,25,26,27,28,29,30]],'clf__kernel':['rbf'],'clf__C':[0.01,0.03,0.1,0.3,1],'clf__gamma':[0.01,0.03,0.1,0.3,1]}
 ]
 search = GridSearchCV(pipe,param_grid,scoring='accuracy',cv=5,refit=True,n_jobs=-1)

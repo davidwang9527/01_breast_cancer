@@ -14,7 +14,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.2,random_st
 clf=DecisionTreeClassifier(random_state=40,class_weight='balanced')
 param_grid={'criterion'        :['gini','entropy'],
             'splitter'         :['best', 'random'],
-            'min_samples_leaf' :[x for x in np.arange(2,50,3)],
+            'min_samples_leaf' :[x for x in np.arange(3,50,3)],
             'max_features'     :[x for x in np.arange(1,X.shape[1])],
             }
 search = GridSearchCV(clf,param_grid,scoring='accuracy',cv=5,refit=True)

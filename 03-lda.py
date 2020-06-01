@@ -18,8 +18,7 @@ pca=PCA()
 standardScaler=StandardScaler()
 
 #step4:Training
-prior=np.mean(y)
-clf=LinearDiscriminantAnalysis(priors=[1-prior,prior])
+clf=LinearDiscriminantAnalysis()
 pipe=Pipeline(steps=[('pca',pca),('standardScaler',standardScaler),('clf',clf)])
 param_grid=[
     {'pca__n_components':[x for x in [24,25,26,27,28,29,30]],'clf__solver':['svd']},

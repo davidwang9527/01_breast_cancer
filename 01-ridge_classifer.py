@@ -19,7 +19,7 @@ standardScaler=StandardScaler()
 #step4:Training
 clf=RidgeClassifier(random_state=40,class_weight='balanced')
 pipe=Pipeline(steps=[('pca',pca),('standardScaler',standardScaler),('clf',clf)])
-param_grid={'pca__n_components':[x for x in [24,25,26,27,28,29,30]],'clf__alpha':[x for x in [1e-8,1e-7,1e-6,1e-5]]}
+param_grid={'pca__n_components':[24,25,26,27,28,29,30],'clf__alpha':[1,0.3,0.1,0.03,0.01]}
 search = GridSearchCV(pipe,param_grid,scoring='accuracy',cv=5,refit=True,n_jobs=-1)
 search.fit(X_train,y_train)
 print('best hyperparameters:{}'.format(search.best_params_))

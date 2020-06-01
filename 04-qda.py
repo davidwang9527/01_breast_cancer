@@ -18,8 +18,7 @@ pca=PCA()
 standardScaler=StandardScaler()
 
 #step4:Training
-prior=np.mean(y)
-clf=QuadraticDiscriminantAnalysis(priors=[1-prior,prior])
+clf=QuadraticDiscriminantAnalysis()
 pipe=Pipeline(steps=[('pca',pca),('standardScaler',standardScaler),('clf',clf)])
 param_grid={'pca__n_components':[x for x in [24,25,26,27,28,29,30]],'clf__reg_param':[0,0.01,0.03,0.1,0.3,0.6,0.9,1]},
 search = GridSearchCV(pipe,param_grid,scoring='accuracy',cv=5,refit=True,n_jobs=-1)
